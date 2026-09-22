@@ -1,9 +1,8 @@
-import example.pepita
+import estudiante.*
 
-describe "group of tests for pepita" {
+describe "tests materias" {
 
-  test "pepita has initial energy" {
-    assert.equals(100, pepita.energy())
+  test "" {
+    assert.equals(,)
   }
-
 }
