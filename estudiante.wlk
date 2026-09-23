@@ -23,14 +23,37 @@ class Estudiante {
         return aprobadas.average{certificado => certificado.nota()}
     }
 
-    method inscribirse(unaCarrera) {
-        inscripciones.add(unaCarrera)
+    method entrarA(unaCarrera) {
+        carreras.add(unaCarrera)
+    }
+
+    method inscribirse(unaMateria) {
+        self.validarQueEsEnUnaDeLasCarreras(unaMateria)
+        self.validarQueNoEstaYaAprobada(unaMateria)
+        self.validarQueNoEstaYaInscripto(unaMateria)
+        self.validarLosRequisitosAprobados(unaMateria)
+        inscripciones.add(unaMateria)
     }
 
     method planDeEstudios() {
-        return inscripciones.map{carrera => carrera.materias()}.flatten()
+        return carreras.map{carrera => carrera.materias()}.flatten()
     }
 
+    method validarQueEsEnUnaDeLasCarreras(unaMateria) {
+        return if (not self.planDeEstudios().contains(unaMateria)) {self.error("esa Materia no corresponde a ninguna de las carreras a las que se inscribio este estudiante")}
+    }
+
+    method validarQueNoEstaYaAprobada(unaMateria) {
+        return if (self.tieneAprobada(unaMateria)) {self.error("esta materia ya fue aprobada por este estudiante")}
+    } 
+
+    method validarQueNoEstaYaInscripto(unaMateria) {
+        return if (inscripciones.contains(unaMateria)) {self.error("el estudiante ya esta inscripto en esta materia")}
+    }
+
+    method validarLosRequisitosAprobados(unaMateria) {
+        
+    }
 }
 
 class Materia {
