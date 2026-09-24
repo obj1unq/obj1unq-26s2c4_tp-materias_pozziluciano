@@ -52,12 +52,15 @@ class Estudiante {
     }
 
     method validarLosRequisitosAprobados(unaMateria) {
-        
+        return if (not unaMateria.requisitos().all{requisito => self.tieneAprobada(requisito)}) {self.error("el estudiante no aprobo los requisitos necesarios para esta materia")}
     }
 }
 
 class Materia {
-   
+   const property requisitos
+   const property cupo
+
+   method requisitos() {return requisitos}
 }
 
 
@@ -89,21 +92,21 @@ const medicina = new Carrera(materias = [quimica, biologia1, biologia2, anatomia
 const derecho = new Carrera(materias = [latin, derechoRomano, historiaDelDerechoArgentino, derechoPenal1, derechoPenal2])
 
 
-const elementosDeProgramación = new Materia()
-const matematica1 = new Materia()
-const objetos1 = new Materia()
-const objetos2 = new Materia()
-const objetos3 = new Materia()
-const trabajoFinal = new Materia()
-const basesDeDatos = new Materia()
+const elementosDeProgramación = new Materia(requisitos = [], cupo = 30)
+const matematica1 = new Materia(requisitos = [], cupo = 30)
+const objetos1 = new Materia(requisitos = [], cupo = 30)
+const objetos2 = new Materia(requisitos = [objetos1, matematica1], cupo = 30)
+const objetos3 = new Materia(requisitos = [objetos2], cupo = 30)
+const trabajoFinal = new Materia(requisitos = [], cupo = 30)
+const basesDeDatos = new Materia(requisitos = [], cupo = 30)
 
-const quimica = new Materia()
-const biologia1 = new Materia()
-const biologia2 = new Materia()
-const anatomiaGeneral = new Materia()
+const quimica = new Materia(requisitos = [], cupo = 30)
+const biologia1 = new Materia(requisitos = [], cupo = 30)
+const biologia2 = new Materia(requisitos = [biologia1], cupo = 30)
+const anatomiaGeneral = new Materia(requisitos = [], cupo = 30)
 
-const latin = new Materia()
-const derechoRomano = new Materia()
-const historiaDelDerechoArgentino = new Materia()
-const derechoPenal1 = new Materia()
-const derechoPenal2 = new Materia()
+const latin = new Materia(requisitos = [], cupo = 30)
+const derechoRomano = new Materia(requisitos = [], cupo = 30)
+const historiaDelDerechoArgentino = new Materia(requisitos = [], cupo = 30)
+const derechoPenal1 = new Materia(requisitos = [], cupo = 30)
+const derechoPenal2 = new Materia(requisitos = [derechoPenal1], cupo = 30)
