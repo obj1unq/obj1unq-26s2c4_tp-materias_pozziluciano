@@ -32,6 +32,7 @@ class Estudiante {
         self.validarQueNoEstaYaAprobada(unaMateria)
         self.validarQueNoEstaYaInscripto(unaMateria)
         self.validarLosRequisitosAprobados(unaMateria)
+        unaMateria.recibirEstudiante(self)
         inscripciones.add(unaMateria)
     }
 
@@ -59,8 +60,17 @@ class Estudiante {
 class Materia {
    const property requisitos
    const property cupo
+   const listaEspera
+   const inscriptos
 
+   method cantInscriptos() {
+    return inscriptos.size()
+   } 
    method requisitos() {return requisitos}
+   method recibirEstudiante(unEstudiante) {
+        if (self.cantInscriptos() == cupo) {listaEspera.add(unEstudiante)} else {inscriptos.add(unEstudiante)}
+   }
+   
 }
 
 
@@ -92,21 +102,21 @@ const medicina = new Carrera(materias = [quimica, biologia1, biologia2, anatomia
 const derecho = new Carrera(materias = [latin, derechoRomano, historiaDelDerechoArgentino, derechoPenal1, derechoPenal2])
 
 
-const elementosDeProgramación = new Materia(requisitos = [], cupo = 30)
-const matematica1 = new Materia(requisitos = [], cupo = 30)
-const objetos1 = new Materia(requisitos = [], cupo = 30)
-const objetos2 = new Materia(requisitos = [objetos1, matematica1], cupo = 30)
-const objetos3 = new Materia(requisitos = [objetos2], cupo = 30)
-const trabajoFinal = new Materia(requisitos = [], cupo = 30)
-const basesDeDatos = new Materia(requisitos = [], cupo = 30)
+const elementosDeProgramación = new Materia(requisitos = [], cupo = 30, listaEspera = [], inscriptos = [])
+const matematica1 = new Materia(requisitos = [], cupo = 30, listaEspera = [], inscriptos = 0)
+const objetos1 = new Materia(requisitos = [], cupo = 30, listaEspera = [], inscriptos = 0)
+const objetos2 = new Materia(requisitos = [objetos1, matematica1], cupo = 30, listaEspera = [], inscriptos = [])
+const objetos3 = new Materia(requisitos = [objetos2], cupo = 30, listaEspera = [], inscriptos = [])
+const trabajoFinal = new Materia(requisitos = [], cupo = 30, listaEspera = [], inscriptos = [])
+const basesDeDatos = new Materia(requisitos = [], cupo = 30, listaEspera = [], inscriptos = [])
 
-const quimica = new Materia(requisitos = [], cupo = 30)
-const biologia1 = new Materia(requisitos = [], cupo = 30)
-const biologia2 = new Materia(requisitos = [biologia1], cupo = 30)
-const anatomiaGeneral = new Materia(requisitos = [], cupo = 30)
+const quimica = new Materia(requisitos = [], cupo = 30, listaEspera = [], inscriptos = [])
+const biologia1 = new Materia(requisitos = [], cupo = 30, listaEspera = [], inscriptos = [])
+const biologia2 = new Materia(requisitos = [biologia1], cupo = 30, listaEspera = [], inscriptos = [])
+const anatomiaGeneral = new Materia(requisitos = [], cupo = 30, listaEspera = [], inscriptos = [])
 
-const latin = new Materia(requisitos = [], cupo = 30)
-const derechoRomano = new Materia(requisitos = [], cupo = 30)
-const historiaDelDerechoArgentino = new Materia(requisitos = [], cupo = 30)
-const derechoPenal1 = new Materia(requisitos = [], cupo = 30)
-const derechoPenal2 = new Materia(requisitos = [derechoPenal1], cupo = 30)
+const latin = new Materia(requisitos = [], cupo = 30, listaEspera = [], inscriptos = [])
+const derechoRomano = new Materia(requisitos = [], cupo = 30, listaEspera = [], inscriptos = [])
+const historiaDelDerechoArgentino = new Materia(requisitos = [], cupo = 30, listaEspera = [], inscriptos = [])
+const derechoPenal1 = new Materia(requisitos = [], cupo = 30, listaEspera = [], inscriptos = [])
+const derechoPenal2 = new Materia(requisitos = [derechoPenal1], cupo = 30, listaEspera = [], inscriptos = [])
