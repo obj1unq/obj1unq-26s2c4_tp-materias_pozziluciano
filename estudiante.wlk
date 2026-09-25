@@ -66,15 +66,49 @@ class Materia {
    method cantInscriptos() {
     return inscriptos.size()
    } 
+
+   method estaEnEspera(unEstudiante) {
+        return listaEspera.contains(unEstudiante)
+   }
+
+   method avanzarColaDeEspera() {
+        if (not listaEspera.isEmpty()) {inscriptos.add(listaEspera.last())
+                                        listaEspera.remove(listaEspera.last())}
+   }
+   method estaListoParaCursar(unEstudiante) {
+        return inscriptos.contains(unEstudiante)
+   }
    method requisitos() {return requisitos}
    method recibirEstudiante(unEstudiante) {
         if (self.cantInscriptos() == cupo) {listaEspera.add(unEstudiante)} else {inscriptos.add(unEstudiante)}
    }
+
+   method darDeBajaEstudiante(unEstudiante) {
+        if (self.estaEnEspera(unEstudiante)) {listaEspera.remove(unEstudiante)} 
+        else if (self.estaListoParaCursar(unEstudiante)) {inscriptos.remove(unEstudiante)
+                                                          self.avanzarColaDeEspera()}
+   }
+
+   method inscriptos() {
+    return inscriptos
+   }
    
+   method listaEspera() {
+    return listaEspera
+   }
 }
 
+object gestorDeInscripciones {
+    method estudiantesInscriptos(unaMateria) {
+        return unaMateria.inscriptos()
+    }
 
-object materiaAprobada {
+    method estudiantesEnEspera(unaMateria) {
+        return unaMateria.listaEspera()
+    }
+} 
+
+object gestorMateriasAprobadas {
     method registrarAprobacion(unEstudiante, unaMateria, unaNota) {
         if (not unEstudiante.tieneAprobada(unaMateria))
         { const nuevoCertificado = new Certificado(materia = unaMateria, nota = unaNota, estudiante = unEstudiante) 
