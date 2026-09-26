@@ -1,0 +1,10 @@
+import estudiante.*
+import materia.*
+import inscripcionesYAprobadas.*
+
+describe "tests materias" {
+
+  test "" {
+    assert.equals(,)
+  }
+}
