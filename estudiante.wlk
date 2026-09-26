@@ -40,6 +40,14 @@ class Estudiante {
         return carreras.map{carrera => carrera.materias()}.flatten()
     }
 
+    method materiasDondeEstaEsperando() {
+        return self.planDeEstudios().filter{materia => materia.estaEnEspera(self)}
+    }
+
+     method materiasDondeYaEntroALaComision() {
+        return self.planDeEstudios().filter{materia => materia.estaListoParaCursar(self)}
+    }
+
     method validarQueEsEnUnaDeLasCarreras(unaMateria) {
         return if (not self.planDeEstudios().contains(unaMateria)) {self.error("esa Materia no corresponde a ninguna de las carreras a las que se inscribio este estudiante")}
     }
