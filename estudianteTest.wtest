@@ -1,4 +1,6 @@
 import estudiante.*
+import materia.*
+import inscripcionesYAprobadas.*
 
 describe "tests materias" {
 
